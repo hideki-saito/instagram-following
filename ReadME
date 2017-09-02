@@ -1,0 +1,5 @@
+1. Prepare target userList.
+    Input the usernames into users.txt.
+
+2. Run the program.
+    python main.py
