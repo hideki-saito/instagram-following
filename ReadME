@@ -1,5 +1,19 @@
+# python 3
+
+# Dependencies
+  pip install -r requirements.txt
+
+# Make Database
+  Create Database and Role, and then replace the values in config.py
+
+
+# Auto following.
 1. Prepare target userList.
     Input the usernames into users.txt.
 
 2. Run the program.
     python main.py
+
+# Get Stories once per 3 hours.
+  python worker.py
+

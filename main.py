@@ -110,6 +110,33 @@ class INSTA():
     def get_userId(self, username):
         return self.client.username_info(username)['user']['pk']
 
+    def get_followings(self):
+        '''
+        Get info per following as a json format and store into followings collection of mongodb.
+        '''
+        max_id = 0
+        folling_ids = {}
+        while True:
+            try:
+                if max_id == 0:
+                    following_response = self.client.user_following(self.user_id)
+
+                else:
+                    following_response = self.client.user_following(self.user_id, max_id=max_id)
+            except:
+                sleep(100)
+                continue
+
+            for following in following_response['users']:
+                folling_ids[following['username']] = following['pk']
+
+            max_id = following_response.get('next_max_id')
+            if max_id is None:
+                break
+
+        return folling_ids
+
+
 def get_lines(txtFile):
     try:
         with open(txtFile) as f:
